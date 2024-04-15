@@ -17,3 +17,12 @@
     }
     /* Remove up and down arrows from input type number */
 }
+.swiper {
+    height: 100%;
+    width: 100%;
+}
+
+.swiper .swiper-pagination-bullet-active {
+    transform: scale(2);
+    transform-origin: center;
+}

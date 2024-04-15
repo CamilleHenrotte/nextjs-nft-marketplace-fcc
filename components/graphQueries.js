@@ -1,9 +1,10 @@
 import { useQuery, gql } from "@apollo/client"
-import NFTBox from "./NFTBox"
+import Carousel from "./Carousel"
+import { useState, useEffect } from "react"
 
 const GET_ACTIVE_ITEMS = gql`
     {
-        activeItems(first: 5, where: { buyer: "0x0000000000000000000000000000000000000000" }) {
+        activeItems(first: 50, where: { buyer: "0x0000000000000000000000000000000000000000" }) {
             id
             buyer
             seller
@@ -13,26 +14,29 @@ const GET_ACTIVE_ITEMS = gql`
         }
     }
 `
-export default function GraphQueries({ marketplaceAddress }) {
+export default function GraphQueries() {
     const { loading, error, data: listedNfts } = useQuery(GET_ACTIVE_ITEMS)
+    const [groupedNfts, setGroupedNfts] = useState([])
+    useEffect(() => {
+        setGroupedNfts(
+            listedNfts?.activeItems.reduce((acc, obj) => {
+                const key = obj.nftAddress
+                if (!acc[key]) {
+                    acc[key] = []
+                }
+                acc[key].push(obj)
+                return acc
+            }, {})
+        )
+    }, [listedNfts])
 
     return (
-        <div className="flex mx-4  gap-4">
-            {loading || !listedNfts ? (
+        <div className="space-y-10 m-4 ">
+            {loading || !groupedNfts ? (
                 <div>Loading...</div>
             ) : (
-                listedNfts.activeItems.map((nft) => {
-                    const { price, nftAddress, tokenId, seller } = nft
-                    return (
-                        <NFTBox
-                            price={price}
-                            nftAddress={nftAddress}
-                            tokenId={tokenId}
-                            marketplaceAddress={marketplaceAddress}
-                            seller={seller}
-                            key={`${nftAddress}${tokenId}`}
-                        />
-                    )
+                Object.keys(groupedNfts).map((nftAddress) => {
+                    return <Carousel key={nftAddress} nfts={groupedNfts[nftAddress]} />
                 })
             )}
         </div>
