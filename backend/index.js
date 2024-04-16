@@ -3,7 +3,7 @@ const mongoose = require("mongoose")
 const nftRoute = require("./routes/nft.route.js")
 const cors = require("cors")
 const corsOptions = {
-    origin: "http://localhost:3000",
+    origin: ["http://localhost:3000", "https://nft-marketplace-l5jt.onrender.com"],
     credentials: true, //access-control-allow-credentials:true
     optionSuccessStatus: 200,
 }

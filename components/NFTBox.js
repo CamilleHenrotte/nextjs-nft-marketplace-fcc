@@ -94,9 +94,10 @@ export default function NFTBox({ price, nftAddress, tokenId, seller }) {
     }
 
     async function getImageUrlFromDatabase() {
-        const nft = await putNftUrl(nftAddress, tokenId)
-        if (nft) {
-            const { imageUrl, name, description } = nft
+        const nft = await getNftUrl(nftAddress, tokenId)
+        console.log(nft)
+        if (nft.length > 0) {
+            const { imageUrl, name, description } = nft[0]
             setImageURI(imageUrl)
             setTokenName(name)
             setTokenDescription(description)

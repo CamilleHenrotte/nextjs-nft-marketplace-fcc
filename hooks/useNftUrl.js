@@ -13,13 +13,15 @@ export function NftUrlProvider({ children }) {
                     "Content-Type": "application/json;charset=UTF-8",
                 },
             }
-
+            let url
+            if (hostname == "localhost") {
+                url = `http://${hostname}:3001${path}/${nftAddress}/${tokenId}`
+            } else {
+                url = `https://${hostname}:3001${path}/${nftAddress}/${tokenId}`
+            }
             options["method"] = "PUT"
             options["body"] = JSON.stringify(data)
-            let response = await fetch(
-                `http://${hostname}:3001${path}/${nftAddress}/${tokenId}`,
-                options
-            )
+            let response = await fetch(url, options)
             response = await response.json()
 
             return response
@@ -36,13 +38,14 @@ export function NftUrlProvider({ children }) {
                     "Content-Type": "application/json;charset=UTF-8",
                 },
             }
-
-            options["method"] = "PUT"
-            options["body"] = JSON.stringify(data)
-            let response = await fetch(
-                `http://${hostname}:3001${path}/${nftAddress}/${tokenId}`,
-                options
-            )
+            let url
+            if (hostname == "localhost") {
+                url = `http://${hostname}:3001${path}/${nftAddress}/${tokenId}`
+            } else {
+                url = `https://${hostname}:3001${path}/${nftAddress}/${tokenId}`
+            }
+            options["method"] = "GET"
+            let response = await fetch(url, options)
             response = await response.json()
 
             return response
