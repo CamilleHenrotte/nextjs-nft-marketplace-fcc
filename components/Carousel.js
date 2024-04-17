@@ -52,7 +52,7 @@ const Carousel = ({ nfts }) => {
                 return (
                     <SwiperSlide
                         key={`${nftAddress}${tokenId}`}
-                        className="customed-double-gardient "
+                        className="customed-double-gardient py-1 "
                     >
                         <NFTBox
                             price={price}

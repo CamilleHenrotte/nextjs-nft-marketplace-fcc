@@ -3,7 +3,9 @@ import { useEffect, useState } from "react"
 import Link from "next/link"
 import useWindowDimensions from "../hooks/useWindowsDimensions"
 import { Dropdown } from "flowbite-react"
-import { HiCog, HiCurrencyDollar, HiLogout, HiViewGrid } from "react-icons/hi"
+import { HiCurrencyDollar, HiViewGrid } from "react-icons/hi"
+import { useRouter } from "next/router"
+
 const DesktopHeader = () => {
     return (
         <div className="grid grid-rows-2 min-w-max">
@@ -26,6 +28,8 @@ const DesktopHeader = () => {
     )
 }
 const MobileDesktop = () => {
+    const { router } = useRouter()
+
     return (
         <div className="grid grid-rows-2 min-w-max">
             <nav className="pt-4 px-5 flex flex-row justify-between items-center  text-primary bg-lightgreen1">
@@ -37,22 +41,16 @@ const MobileDesktop = () => {
                     color="primary"
                     className="w-full"
                 >
-                    <Dropdown.Item
-                        icon={() => <HiViewGrid className="h-6 w-6" />}
-                        onClick={() => {
-                            router.push("/")
-                        }}
-                    >
-                        <a className="text-lg p-1 px-3">Home</a>
+                    <Dropdown.Item icon={() => <HiViewGrid className="h-6 w-6" />}>
+                        <a href="/" className="text-lg p-1 px-3">
+                            Home
+                        </a>
                     </Dropdown.Item>
                     <Dropdown.Divider />
-                    <Dropdown.Item
-                        icon={() => <HiCurrencyDollar className="h-6 w-6" />}
-                        onClick={() => {
-                            router.push("/sell-nft")
-                        }}
-                    >
-                        <a className="text-lg p-1 px-3">Sell Nft</a>
+                    <Dropdown.Item icon={() => <HiCurrencyDollar className="h-6 w-6" />}>
+                        <a href="/sell-nft" className="text-lg p-1 px-3">
+                            Sell Nft
+                        </a>
                     </Dropdown.Item>
                     <Dropdown.Divider />
                     <div className=" m-5 mt-[150px] flex justify-end">
@@ -67,6 +65,7 @@ const MobileDesktop = () => {
 export default function Header() {
     const { windowWidth } = useWindowDimensions()
     const [domLoaded, setDomLoaded] = useState(false)
+    const { router } = useRouter()
     useEffect(() => {
         setDomLoaded(true)
     }, [])
