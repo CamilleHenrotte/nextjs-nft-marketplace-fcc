@@ -93,7 +93,7 @@ const SellNFTForm = () => {
         })
     }
     return (
-        <form onSubmit={handleSubmit} className="space-y-3">
+        <form onSubmit={handleSubmit} className="space-y-3 text-gray-500">
             <div>
                 <input
                     type="text"
@@ -102,7 +102,7 @@ const SellNFTForm = () => {
                     value={formData.nftAddress}
                     onChange={handleChange}
                     required
-                    className="border border-gray-300 rounded-full px-4 py-2 w-full placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-2 focus:ring-lightgreen1 focus:border-0"
+                    className=" border border-gray-300 rounded-full px-4 py-2 w-full placeholder-gray-500  focus:outline-none focus:ring-2 focus:ring-lightgreen1 focus:border-0"
                     placeholder="NFT Address"
                 />
             </div>
@@ -114,7 +114,7 @@ const SellNFTForm = () => {
                     value={formData.tokenId}
                     onChange={handleChange}
                     required
-                    className="border border-gray-300 rounded-full px-4 py-2 w-full placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-2 focus:ring-lightgreen1 focus:border-0"
+                    className="border border-gray-300 rounded-full px-4 py-2 w-full placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-lightgreen1 focus:border-0"
                     placeholder="Token ID"
                 />
             </div>
@@ -126,7 +126,7 @@ const SellNFTForm = () => {
                     value={formData.price}
                     onChange={handleChange}
                     required
-                    className="border border-gray-300 rounded-full px-4 py-2 w-full placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-2 focus:ring-lightgreen1 focus:border-0"
+                    className="border border-gray-300 rounded-full px-4 py-2 w-full placeholder-gray-500  focus:outline-none focus:ring-2 focus:ring-lightgreen1 focus:border-0"
                     placeholder="Price (in ETH)"
                     // Disable arrows for number input
                     onWheel={(e) => e.preventDefault()}
