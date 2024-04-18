@@ -96,7 +96,6 @@ export default function NFTBox({ price, nftAddress, tokenId, seller }) {
 
     async function getImageUrlFromDatabase() {
         const nft = await getNftUrl(nftAddress, tokenId)
-        console.log(nft)
         if (nft && nft.length > 0) {
             const { imageUrl, name, description } = nft[0]
             setImageURI(imageUrl)
@@ -114,7 +113,7 @@ export default function NFTBox({ price, nftAddress, tokenId, seller }) {
         <div className="w-full sm:w-[250px] !text-roboto ">
             <a
                 href="#"
-                class="block  border-3  rounded-xl   max-w-sm  bg-white shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
+                className="block  border-3  rounded-xl   max-w-sm  bg-white shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
                 //title={<TruncatedString text={tokenName} maxLength={20} />}
                 //description={<TruncatedString text={tokenDescription} maxLength={20} />}
             >
@@ -155,6 +154,7 @@ export default function NFTBox({ price, nftAddress, tokenId, seller }) {
                                     width="320"
                                     unoptimized
                                     priority
+                                    className="rounded-t-xl"
                                     onClick={() => {
                                         setShowDescriptionModal(true)
                                     }}
